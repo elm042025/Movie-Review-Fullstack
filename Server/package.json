@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend for Movies Review Application",
   "main": "src/main.js",
+  "type": "module",
   "scripts": {
     "start": "node src/main.js",
     "dev": "nodemon src/main.js"
