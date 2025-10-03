@@ -4,12 +4,25 @@ import { getPool, sql } from '../DB/DB.js';
 export const addNewMovie = async (req, res, next) => {
   try
    {
+
+        // Basic validation, bad requests
+
+    if(!req.body || Object.keys(req.body).length === 0){
+        return res.status(400).json({ error: 'Request body is required' });
+    }
+
     const { title, director, releaseYear, genre } = req.body;
 
     if (!title || !Number.isInteger(releaseYear)) {
-        // Bad Request
       return res.status(400).json({ error: 'title and integer releaseYear are required' });
     }
+
+    if (title !== undefined && title.trim() === '') {
+        return res.status(400).json({ error: 'title cannot be empty' });
+    }
+
+
+    // Insert the new movie into the database
 
     const pool = await getPool();
 
@@ -33,6 +46,7 @@ export const addNewMovie = async (req, res, next) => {
     if (err.number === 2627 || err.number === 2601) {
       return res.status(409).json({ error: 'Movie with same title and year already exists' });
     }
+
     next(err);
   }
 };

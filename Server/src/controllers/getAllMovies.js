@@ -11,11 +11,10 @@ const result = await pool.request().query
   'SELECT * FROM dbo.Movies'
 );
 
-res.status(200).json(result.recordset);
+res.status(200).json(result.recordset); // 200 ok [array of movies  could be empty]
   }
     catch (error)
     {
         next(error);
     }
 }
-
