@@ -1,8 +1,17 @@
+import {getPool} from "../DB/DB.js"
+
 export const getAllMovies = async (req, res, next ) =>
 {
   try
   {
-    res.status(200).json({ message: "getAllMovies - controller" });
+const pool = await getPool();
+
+const result = await pool.request().query
+(
+  'SELECT * FROM dbo.Movies'
+);
+
+res.status(200).json(result.recordset);
   }
     catch (error)
     {
