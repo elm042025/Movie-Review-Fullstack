@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "e22827f3-7a33-4728-aae3-6ea99a50a900",
+		"name": "Fjellfilm API Collection",
+		"description": "Movie Review API for Fjellfilm.\n\nIncludes endpoints for Movies and Reviews with example bodies and simple tests.\n\nVariables:\n- {{baseUrl}} defaults to http://localhost:3500\n\nFolders:\n- Movies\n- Reviews",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49006761",
+		"_collection_link": "https://elm042025-7823992.postman.co/workspace/fc79f0cc-a6de-42ad-8b03-5f3eee86838d/collection/49006761-e22827f3-7a33-4728-aae3-6ea99a50a900?action=share&source=collection_link&creator=49006761"
+	},
+	"item": [
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Get All Movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Returns JSON array\", () => {",
+									" const body = pm.response.json();",
+									" pm.expect(Array.isArray(body)).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Returns a list of all movies."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movie by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status is 200 or 404\", () => {",
+									" pm.expect([200,404]).to.include(pm.response.code);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Returns one movie by its ID. 404 if not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"201 Created\", () => pm.response.to.have.status(201));",
+									"pm.test(\"Returns created movie with id\", () => {",
+									" const body = pm.response.json();",
+									" pm.expect(body).to.have.property('id');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"title\": \"Inception\",\n \"director\": \"Christopher Nolan\",\n \"releaseYear\": 2010,\n \"genre\": \"Sci-Fi\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Creates a movie. Requires `title` and integer `releaseYear`."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Movie by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"200 or 404\", () => {",
+									" pm.expect([200,404]).to.include(pm.response.code);",
+									"});",
+									"if (pm.response.code === 200) {",
+									" pm.test(\"Returns updated movie\", () => {",
+									" const body = pm.response.json();",
+									" pm.expect(body).to.have.property('id');",
+									" });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"title\": \"Updated Title\",\n \"director\": \"Updated Director\",\n \"releaseYear\": 2024,\n \"genre\": \"Drama\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movies/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Partially updates a movie. Any field omitted stays unchanged."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Add Review to Movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"201 Created\", () => pm.response.to.have.status(201));",
+									"pm.test(\"Returns created review with id\", () => {",
+									" const body = pm.response.json();",
+									" pm.expect(body).to.have.property('id');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"reviewAuthor\": \"Jane Doe\",\n \"reviewText\": \"Amazing movie!\",\n \"rating\": 5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movies/:id/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								":id",
+								"reviews"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Adds a review for a movie. rating must be integer 1–5."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews for Movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"200 or 404\", () => {",
+									" pm.expect([200,404]).to.include(pm.response.code);",
+									"});",
+									"if (pm.response.code === 200) {",
+									" pm.test(\"Returns JSON array\", () => {",
+									" const body = pm.response.json();",
+									" pm.expect(Array.isArray(body)).to.be.true;",
+									" });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies/:id/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								":id",
+								"reviews"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Returns an array of reviews for the given movie. 404 if movie not found."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3500",
+			"type": "string"
+		}
+	]
+}
