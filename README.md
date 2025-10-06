@@ -49,6 +49,21 @@ Dev tools: Postman/Thunder Client
 ```
 
 ---
+## 📸 Screenshots
+
+### FrontEnd HomePage
+![Frontend Home Page](./Docs/screenshots/homePage.png)
+
+### FrondEnd MovieDetails
+![Fronend Movie Details](./Docs/screenshots/MovieDetails.png)
+
+### API /movies Endpoint 
+![API /movies](./Docs/screenshots/API-all-movies.png)
+
+### API /movies/:id/reviews Endpoint
+![API /movies/:id/reviews](./Docs/screenshots/movieDetails.png)
+
+---
 
 🚀 Quick Start (TL;DR)
 
@@ -163,6 +178,8 @@ Body:
   "rating": 5
 }
 ```
+
+---
 
 Status Codes
 
