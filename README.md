@@ -33,7 +33,7 @@ Dev tools: Postman/Thunder Client
 
 ```pgsql
 .
-├── client/                 # React app (Vite)
+├── client/                 # React app (Vite) Minimal just for testing (mostly vibe coded)
 ├── server/                 # Express API
 │   └── src/
 │       ├── app.js
