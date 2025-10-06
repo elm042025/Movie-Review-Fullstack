@@ -33,8 +33,8 @@ Dev tools: Postman/Thunder Client
 
 ```pgsql
 .
-├── client/                 # React app (Vite) Minimal just for testing (mostly vibe coded)
-├── server/                 # Express API
+├── client/                 # React app (Vite) Minimal, not pretty, just for testing (mostly vibe coded)
+├── server/                 # Express API (Main assignment)
 │   └── src/
 │       ├── app.js
 │       ├── main.js
@@ -44,7 +44,7 @@ Dev tools: Postman/Thunder Client
 │       ├── routes/
 │       │   └── moviesRoutes.js
 │       └── controllers/
-└── Fjellfilm.postman_collection.json   # (put this in root or /docs)
+└── Fjellfilm.postman_collection.json
 
 ```
 
@@ -250,7 +250,7 @@ If you served the React build from Express (same origin), you don’t need CORS.
 
 🧷 .env Example
 
-Place this in server/.env (don’t commit real secrets):
+Place this in server/.env:
 
 ```ìni
 PORT=3500
@@ -258,7 +258,7 @@ SQL_SERVER=localhost
 SQL_DATABASE=Fjellfilm
 SQL_PORT=1433
 SQL_USER=movie_user
-SQL_PASSWORD=movie_user_pwd!
+SQL_PASSWORD=movie_user_pwd! (Choose a password)
 SQL_ENCRYPT=false
 SQL_TRUST_CERT=true
 ```
