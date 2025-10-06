@@ -1,33 +1,39 @@
-import express from 'express';
-import dotenv from 'dotenv';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
 
-//! ===== routes =====  
+//! ===== routes =====
 
-import moviesRoutes from './routes/moviesRoutes.js';
-
+import moviesRoutes from "./routes/moviesRoutes.js";
 
 dotenv.config();
 
-const app = express()
+const app = express();
 
 // ===== middlewares =====
 
-app.use(express.json())
+app.use(cors({
+  origin: 'http://localhost:5173'  // Adjust the origin as needed for your frontend
+}));
+
+app.use(express.json());
 
 
 // ===== movies & movies reviews routes =====
 
-app.use('/movies', moviesRoutes)
+app.use("/movies", moviesRoutes);
 
 // ===== 404 handler =====
 
-app.use((req, res) => res.status(404).json({ error: 'Not Found' }));
+app.use((req, res) => res.status(404).json({ error: "Not Found" }));
 
 // ===== error handler =====
 
 app.use((err, req, res, next) => {
-   console.error("🔥 Global error:", err);
-   res.status(err.statusCode || 500).json({ error: err.message || "Internal Server Error" });
+  console.error("🔥 Global error:", err);
+  res
+    .status(err.statusCode || 500)
+    .json({ error: err.message || "Internal Server Error" });
 });
 
 export default app;
