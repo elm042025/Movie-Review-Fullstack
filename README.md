@@ -77,8 +77,8 @@ Requirements: Node 18+, SQL Server running locally (Express or Developer edition
 1. Clone & Install
 
 ```bash
-git clone <your-repo-url>
-cd <repo>
+git clone https://github.com/elm042025/Movie-Review-Fullstack
+cd <repo path on ur pc>
 cd server && npm install
 cd ../client && npm install
 ```
