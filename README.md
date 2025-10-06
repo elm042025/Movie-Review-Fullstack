@@ -56,7 +56,7 @@ Dev tools: Postman/Thunder Client
 
 ![Frontend Home Page](./Docs/screenshots/homePage.png)
 
-### FrondEnd MovieDetails
+### FrontEnd MovieDetails
 
 ![Frontend Movie Details](./Docs/screenshots/movieDetails.png)
 
