@@ -147,6 +147,8 @@ GET /movies → list all movies
 
 GET /movies/:id → get one movie
 
+---
+
 POST /movies → create movie
 Body:
 
@@ -172,6 +174,8 @@ Body (send only fields to change):
 Reviews (nested)
 
 GET /movies/:id/reviews → list reviews for a movie
+
+---
 
 POST /movies/:id/reviews → add review
 Body:
