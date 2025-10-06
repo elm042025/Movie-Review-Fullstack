@@ -11,7 +11,7 @@ const dbConfig=
     options:
     {
         encrypt: process.env.SQL_ENCRYPT === 'true',
-        trustServerCertificate: process.env.SQL_ENCRYPT !== 'true'
+        trustServerCertificate: process.env.SQL_TRUST_CERT === 'true'
 
     }
 }

@@ -63,7 +63,11 @@ export const updateMovie = async (req, res, next ) =>
               WHERE id = @id
         `);
 
-        res.status(201).json(result.recordset[0]); // 201 Created with updated movie
+        if (!result.recordset || result.recordset.length === 0) {
+  return res.status(404).json({ error: 'Movie not found' });
+}
+
+        res.status(200).json(result.recordset[0]); // 200 OK with updated movie
     }
     catch (error)
     {

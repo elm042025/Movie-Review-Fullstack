@@ -49,7 +49,7 @@ export const addReview = async (req, res, next) => {
     const exists = await pool
       .request()
       .input("id", sql.Int, movieId)
-      .query("SELECT 1 FROM Movies WHERE id = @id");
+      .query("SELECT 1 FROM dbo.Movies WHERE id = @id");
 
     if (!exists || exists.recordset.length === 0) {
       return res.status(404).json({ error: "Movie not found" });
@@ -79,5 +79,6 @@ export const addReview = async (req, res, next) => {
     if (error.number === 547) {
       return res.status(400).json({ error: "invalid data or movie reference" });
     }
+    next(error); // Pass error to the global error handler
   }
 };

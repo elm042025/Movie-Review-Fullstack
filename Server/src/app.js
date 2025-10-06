@@ -23,4 +23,11 @@ app.use('/movies', moviesRoutes)
 
 app.use((req, res) => res.status(404).json({ error: 'Not Found' }));
 
+// ===== error handler =====
+
+app.use((err, req, res, next) => {
+   console.error("🔥 Global error:", err);
+   res.status(err.statusCode || 500).json({ error: err.message || "Internal Server Error" });
+});
+
 export default app;

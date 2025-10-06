@@ -25,9 +25,10 @@ export const addNewMovie = async (req, res, next) => {
     // Insert the new movie into the database
 
     const pool = await getPool();
+    const safeTitle = title.trim();
 
     const result = await pool.request()
-      .input('title', sql.NVarChar(100), title)
+      .input('title', sql.NVarChar(100), safeTitle)
       .input('director', sql.NVarChar(100), director ?? null)
       .input('releaseYear', sql.Int, releaseYear)
       .input('genre', sql.NVarChar(50), genre ?? null)

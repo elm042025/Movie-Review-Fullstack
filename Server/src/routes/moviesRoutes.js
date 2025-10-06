@@ -10,7 +10,7 @@ import {getMovieByID} from '../controllers/getMovieByID.js'
 import {updateMovie} from '../controllers/updateMovie.js'
 
 
-//! ===== routes for /movies endpoint in app.js =====
+//! ===== Movies =====
 
 const router = Router();
 
@@ -22,10 +22,12 @@ router.post('/', addNewMovie)
 
 router.put('/:id', updateMovie)
 
-//! ===== reviews, nested under movies/:id ===== 
+//! ===== Reviews, nested under movies/:id ===== 
 
 router.post('/:id/reviews', addReview)
 
 router.get('/:id/reviews', getAllReviewsForMovie)
+
+//! ===== Exporting router ===== 
 
 export default router;
